@@ -404,7 +404,7 @@ So, if $\| \nabla f(x_{0})\|_2 < \frac{2m^2}{L}$ then covergence is extremely fa
 
 Importantly, note that the notion of distance depends on $L$ and $m$. In particular, note that if $L$ is huge, the gradient must be very small in order to enter the quadratic convergence regime! The more stable the Hessian is, the better. Intuitively, lower $L$ implies that the function resembles a quadratic function and hence the second order Taylor approximaton is better. This is particularly relevant for log-barrier methods but we will not dive into that here.
 
-## Some comments on equality costrained optimization
+## Some comments on equality constrained optimization
 Let's consider the following minimization problem:
 
 $$
