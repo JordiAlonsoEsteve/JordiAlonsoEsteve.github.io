@@ -16,6 +16,7 @@ layout: default
     <div style="flex:2;">
         <p><strong>Hello, and welcome to my online notebook!!</strong></p>
         <p>Here I gather some notes on different topics</p>
+        <p>Drop me a message: JordiAlonso@proton.me </p>
         
     </div>
 </div>
