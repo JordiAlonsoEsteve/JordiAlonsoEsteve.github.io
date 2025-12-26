@@ -380,7 +380,7 @@ $$
 &= \| \int_0^1 \big( \nabla^2 f(x_k + t\triangle_{nt}^k) - \nabla^2 f(x_k) \big) dt \triangle_{nt}^k\|_2 \quad \text{(Fundamental theorem of calculus)} \\
 &\leq \int_0^1 \| \big( \nabla^2 f(x_k + t\triangle_{nt}^k) - \nabla^2 f(x_k) \big) \triangle_{nt}^k\|_2dt \quad \text{(Triangle inequality)} \\ 
 &\leq \int_0^1 \| \big( \nabla^2 f(x_k + t\triangle_{nt}^k) - \nabla^2 f(x_k) \big)\|_2\|\triangle_{nt}^k\|_2dt \quad \text{(Cauchy–Schwarz inequality)} \\
-&\leq L(t \|\triangle_{nt}^k \|_2 ) \|\triangle_{nt}^k \|_2 \quad \text{(Lipschitz continuity definition)} \\
+&\leq \int_0^1 L(t \|\triangle_{nt}^k \|_2 ) \|\triangle_{nt}^k \|_2 dt \quad \text{(Lipschitz continuity definition)} \\
 &= \frac{L}{2}\|-(\nabla^2 f(x))^{-1} \nabla f(x)|^2_2 \\
 &\leq \frac{L}{2}\| m^{-1}\nabla f(x_k)\|^2_2 \quad \text{(Effect of the Hessian is bounded below by smallest eigenvalue possible in the domain)} \\
 &= \frac{L}{2m^2}\| \nabla f(x_k)\|^2_2.\\
