@@ -433,7 +433,7 @@ Another, but still not proper, way to go about this is to use gradient descent o
 $$
 \begin{equation}
 \begin{aligned}
-\nabla_x L(x, \lambda) &= (\nabla f(x) + \lambda^{\top}A), \\ 
+\nabla_x L(x, \lambda) &= (\nabla f(x) + A^{\top} \lambda), \\ 
 \nabla_{\lambda} L(x, \lambda) &= (Ax - b) \\
 \end{aligned}
 \label{eq:derivatives_const}
@@ -512,7 +512,7 @@ $$
 
 Note that this again forces the update to be in the kernel of $A$. This requires that the initial point is feasible, then it won't break feasibility at any point, like PGD. Equations in \ref{eq:derivatives_const} could be considered "residual" values of the stationary condition and the primal feasibility contion (from KKT). Essentially, we are looking for the step that drives the residual to 0.
 
-Note that this idea of ensuring that the updates are within a manifold is quite cool, it is exploited more explicitly in [Sequential Quadratic Programming](https://en.wikipedia.org/wiki/Sequential_quadratic_programming).
+Note that this idea of ensuring that the updates are within a manifold is quite cool, it is exploited more explicitly in [Sequential Quadratic Programming](https://en.wikipedia.org/wiki/Sequential_quadratic_programming). Note that the substitution the equality constraint by 0 in the residual vector is only possible if the start is already feasible.
 
 In the above example, a very naive implementation of Newton's method takes only 0.068 seconds.
 
