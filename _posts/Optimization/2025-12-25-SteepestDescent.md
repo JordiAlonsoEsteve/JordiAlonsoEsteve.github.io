@@ -495,10 +495,10 @@ A & 0
 \Delta x_k \\ \Delta \lambda_k
 \end{pmatrix}
 =
-\begin{pmatrix}
+-\begin{pmatrix}
 \nabla f(x_k) + A^\top \lambda_k \\ Ax_k - b
 \end{pmatrix} = 
-\begin{pmatrix}
+-\begin{pmatrix}
 \nabla f(x_k) + A^\top \lambda_k \\ 0
 \end{pmatrix}
 $$
@@ -510,9 +510,32 @@ x_{k+1} = x_k - \Delta x_k, \quad
 \lambda_{k+1} = \lambda_k - \Delta \lambda_k.
 $$
 
-Note that this again forces the update to be in the kernel of $A$. This requires that the initial point is feasible, then it won't break feasibility at any point, like PGD. Equations in \ref{eq:derivatives_const} could be considered "residual" values of the stationary condition and the primal feasibility contion (from KKT). Essentially, we are looking for the step that drives the residual to 0.
+There is an important distinction in the actual algorithm if the start is or not feasible ($$Ax = b$$). If the start is not feasible we are essentially looking at a primal-dual optimization algorithm and we look at minimizing the residual vector. This has implications in the line search, convergence criteria and so on. The second equality in the Newton system would not be true in that case. However, it is often pretty simple to provide a feasible starting point. In that case, we can actually do some simple algebra 
 
-Note that this idea of ensuring that the updates are within a manifold is quite cool, it is exploited more explicitly in [Sequential Quadratic Programming](https://en.wikipedia.org/wiki/Sequential_quadratic_programming). Note that the substitution the equality constraint by 0 in the residual vector is only possible if the start is already feasible.
+$$
+\begin{aligned}
+\nabla^2 f(x_k) \Delta x_k + A^\top \Delta \lambda_k &= - \nabla f(x_k) - A^\top \lambda_k \\
+\nabla^2 f(x_k) \Delta x_k &= - \nabla f(x_k) - A^\top (\lambda_k + \Delta \lambda_k)
+\end{aligned}
+$$
+
+so let $$\lambda = (\lambda_k + \Delta \lambda_k)$$ to reach the equivalent simpler system:
+
+
+$$
+\begin{pmatrix}
+\nabla^2 f(x_k) & A^\top \\
+A & 0
+\end{pmatrix}
+\begin{pmatrix}
+\Delta x_k \\ \lambda
+\end{pmatrix} = 
+-\begin{pmatrix}
+\nabla f(x_k) \\ 0
+\end{pmatrix}.
+$$
+
+In the latter we actually do not care much about $$\lambda$$ until convergence. Since it does not play any role in determining the updates for $$x$$.
 
 In the above example, a very naive implementation of Newton's method takes only 0.068 seconds.
 
