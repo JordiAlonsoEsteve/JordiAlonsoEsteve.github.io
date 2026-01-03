@@ -46,11 +46,11 @@ $$
 f(y) = f(x) + \nabla f(x)^{\top}(y-x) + \frac{1}{2} (y-x)^{\top}\nabla ^2 f(z) (y - x),
 $$
 
-for some  $z =  \theta x + (1-\theta) y \quad $  with $\theta \in [0, 1]$. Since $f$ is an strictly convex function we have that the second derivative must be positive definite <sup>[1](#note-1)</sup>. Now, we want to find a lower and upper bound of $\frac{1}{2} (y-x)^{\top}\nabla ^2 f(z) (y - x)$. By considering the smallest eigenvalue $\lambda_{min}$ of $\nabla ^2 f(z)$ <sup>[2](#note-2)</sup> we obtain a lower bound:
+for some  $z =  \theta x + (1-\theta) y \quad $  with $\theta \in [0, 1]$. Since $f$ is an strictly convex function we have that the second derivative must be positive definite <sup>[1](#note-1)</sup>. Now, we want to find a lower and upper bound of $\frac{1}{2} (y-x)^{\top}\nabla ^2 f(z) (y - x)$. By considering the smallest eigenvalue $\nu_{min}$ of $\nabla ^2 f(z)$ <sup>[2](#note-2)</sup> we obtain a lower bound:
 
 $$
 \begin{equation}
-f(y) \geq f(x) + \nabla f(x)^{\top}(y-x) + \frac{1}{2} \lambda_{min}\|y - x\|^2_2.
+f(y) \geq f(x) + \nabla f(x)^{\top}(y-x) + \frac{1}{2} \nu_{min}\|y - x\|^2_2.
 \label{eq:lowb}
 \end{equation}
 $$
@@ -59,13 +59,13 @@ From here, we can derive a lower bound on the difference to the optimal function
 r.h.s. of equation \ref{eq:lowb}. Equating the first derivative w.r.t $y$ to $0$:
 
 $$
-\nabla f(x) + \lambda_{min}(y-x) = 0,
+\nabla f(x) + \nu_{min}(y-x) = 0,
 $$
 
 then, 
 
 $$
-\bar{y} =  x - \frac{\nabla f(x)}{\lambda_{min}}.
+\bar{y} =  x - \frac{\nabla f(x)}{\nu_{min}}.
 $$
 
 Hence, plugging in, we have 
@@ -74,19 +74,19 @@ $$
 \begin{align*}
 f(x)
 &+ \nabla f(x)^{\top}(y - x)
-+ \frac{1}{2}\lambda_{\min}\|y - x\|_2^2 \\
++ \frac{1}{2}\nu_{\min}\|y - x\|_2^2 \\
 &\ge
 f(x)
-+ \nabla f(x)^{\top}\!\left(-\frac{\nabla f(x)}{\lambda_{\min}}\right)
-+ \frac{1}{2}\lambda_{\min}
-\|\frac{\nabla f(x)}{\lambda_{\min}}\|_2^2 \\
++ \nabla f(x)^{\top}\!\left(-\frac{\nabla f(x)}{\nu_{\min}}\right)
++ \frac{1}{2}\nu_{\min}
+\|\frac{\nabla f(x)}{\nu_{\min}}\|_2^2 \\
 &=
 f(x)
-- \frac{1}{\lambda_{\min}}\|\nabla f(x)\|_2^2
-+ \frac{1}{2\lambda_{\min}}\|\nabla f(x)\|_2^2 \\
+- \frac{1}{\nu_{\min}}\|\nabla f(x)\|_2^2
++ \frac{1}{2\nu_{\min}}\|\nabla f(x)\|_2^2 \\
 &=
 f(x)
-- \frac{1}{2\lambda_{\min}}\|\nabla f(x)\|_2^2 .
+- \frac{1}{2\nu_{\min}}\|\nabla f(x)\|_2^2 .
 \end{align*}
 $$
 
@@ -94,7 +94,7 @@ Finally, since the above holds for any $y$, we have that
 
 $$
 \begin{equation}
-2\lambda_{\min}(-p^* + f(x)) \leq \|\nabla f(x)\|_2^2
+2\nu_{\min}(-p^* + f(x)) \leq \|\nabla f(x)\|_2^2
 \label{eq:lowbound_g}
 \end{equation}
 $$
@@ -103,7 +103,7 @@ Now for the upper bound:
 
 $$
 \begin{equation}
-f(y) \leq f(x) + \nabla f(x)^{\top}(y-x) + \frac{1}{2} \lambda_{max}\|y - x\|^2_2.
+f(y) \leq f(x) + \nabla f(x)^{\top}(y-x) + \frac{1}{2} \nu_{max}\|y - x\|^2_2.
 \label{eq:uppb}
 \end{equation}
 $$
@@ -116,12 +116,12 @@ $$
 f(x - \alpha\nabla f(x))
 &\leq f(x)
 + \nabla f(x)^{\top}\big((x - \alpha\nabla f(x)) - x\big)
-+ \tfrac{1}{2}\lambda_{\max}\|(x - \alpha\nabla f(x)) - x\|_2^2 \\
++ \tfrac{1}{2}\nu_{\max}\|(x - \alpha\nabla f(x)) - x\|_2^2 \\
 &= f(x)
 + \nabla f(x)^{\top}\big(-\alpha\nabla f(x)\big)
-+ \tfrac{1}{2}\lambda_{\max}\|(\alpha\nabla f(x))\|_2^2 \\
++ \tfrac{1}{2}\nu_{\max}\|(\alpha\nabla f(x))\|_2^2 \\
 &= f(x) - \alpha\|\nabla f(x)\|^2_2 
-+ \tfrac{\alpha^2}{2}\lambda_{\max}\|\nabla f(x)\|_2^2.
++ \tfrac{\alpha^2}{2}\nu_{\max}\|\nabla f(x)\|_2^2.
 \end{aligned} \\
 $$
 
@@ -129,13 +129,13 @@ $$
 Now, minimizing over $\alpha$ (is a simple quadratic equation):
 
 $$
--\|\nabla f(x)\|^2_2 + \alpha\lambda_{\max}\|\nabla f(x)\|_2^2 = 0
+-\|\nabla f(x)\|^2_2 + \alpha\nu_{\max}\|\nabla f(x)\|_2^2 = 0
 $$
 
 so the optimal $\alpha$:
 
 $$
-\alpha = \frac{\|\nabla f(x)\|^2_2}{\lambda_{\max}\|(\nabla f(x))\|_2^2} = \frac{1}{\lambda_{\max}}.
+\alpha = \frac{\|\nabla f(x)\|^2_2}{\nu_{\max}\|(\nabla f(x))\|_2^2} = \frac{1}{\nu_{\max}}.
 $$
 
 Plugging in:
@@ -143,11 +143,11 @@ Plugging in:
 $$
 \begin{aligned}
 
-f(x - \alpha\nabla f(x)) & \leq f(x) - \frac{1}{\lambda_{\max}}\|\nabla f(x)\|^2_2 
-+ \frac{1}{2\lambda_{\max}^2}\lambda_{\max}\|\nabla f(x)\|_2^2 \\
-&= f(x) - \frac{1}{\lambda_{\max}}\|\nabla f(x)\|^2_2 
-+ \frac{1}{2\lambda_{\max}}\|\nabla f(x)\|_2^2 \\
-&= f(x) - \frac{1}{2\lambda_{\max}}\|\nabla f(x)\|^2_2.
+f(x - \alpha\nabla f(x)) & \leq f(x) - \frac{1}{\nu_{\max}}\|\nabla f(x)\|^2_2 
++ \frac{1}{2\nu_{\max}^2}\nu_{\max}\|\nabla f(x)\|_2^2 \\
+&= f(x) - \frac{1}{\nu_{\max}}\|\nabla f(x)\|^2_2 
++ \frac{1}{2\nu_{\max}}\|\nabla f(x)\|_2^2 \\
+&= f(x) - \frac{1}{2\nu_{\max}}\|\nabla f(x)\|^2_2.
 \end{aligned} \\
 $$
 
@@ -156,19 +156,19 @@ Substracting the optimal value $p^*$ and using equation \ref{eq:lowbound_g}:
 $$
 \begin{aligned}
 
-f(x - \alpha \nabla f(x)) - p^* \leq f(x) - p^* - \frac{1}{2\lambda_{\max}}\|\nabla f(x)\|^2_2 \leq f(x) - p^* - \frac{\lambda_{\min}}{\lambda_{\max}}(-p^* + f(x)) = (1 - \frac{\lambda_{\min}}{\lambda_{\max}})(f(x) - p^*)
+f(x - \alpha \nabla f(x)) - p^* \leq f(x) - p^* - \frac{1}{2\nu_{\max}}\|\nabla f(x)\|^2_2 \leq f(x) - p^* - \frac{\nu_{\min}}{\nu_{\max}}(-p^* + f(x)) = (1 - \frac{\nu_{\min}}{\nu_{\max}})(f(x) - p^*)
 \end{aligned} \\
 
 $$
 
-We are almost there. Appartenly if $\frac{\lambda_{\min}}{\lambda_{\max}} = 0$ is possible that we make no progress towards the optimum, since the value of the function after applying the optimal step may be the same. Let's look closer:
+We are almost there. Appartenly if $\frac{\nu_{\min}}{\nu_{\max}} = 0$ is possible that we make no progress towards the optimum, since the value of the function after applying the optimal step may be the same. Let's look closer:
 
 Let
 
 $$
 \begin{aligned}
 x_{k+1} := x_k - \alpha_k \nabla f(x_k),\\
-\rho := 1 - \frac{\lambda_{\min}}{\lambda_{\max}}.
+\rho := 1 - \frac{\nu_{\min}}{\nu_{\max}}.
 \end{aligned} \\
 $$
 
@@ -419,22 +419,22 @@ Assume $f(x)$ is strongly convex and differentiable as before. Furthermore, $A$ 
 The Lagrangian encodes the idea that, at the optimum, the derivative of the function must be proportional to the derivative of the constraint (otherwise we could move in some direction orthogonal to the constraint and improve the function value while staying feasible):
 
 $$
-L(x, \lambda) = f(x) + \lambda^{\top}(Ax - b),
+L(x, \nu) = f(x) + \nu^{\top}(Ax - b),
 $$
 
-defines a saddle, we want to minimize the function w.r.t $x$ and maximize it w.r.t $\lambda$. The optimum is the critical point of the saddle. There is much more to this, but we do not dive into it here.
+defines a saddle, we want to minimize the function w.r.t $x$ and maximize it w.r.t $\nu$. The optimum is the critical point of the saddle. There is much more to this, but we do not dive into it here.
 
 ### Gradient descent
 
-Importantly, minimizing the Lagrangian is not defined, it does not have a minimum. Hence, applying gradient descent to the Lagrangian makes no sense. Treating $\lambda$ as a hyperparameter and use gradient descent is likely wrong in most of the cases.
+Importantly, minimizing the Lagrangian is not defined, it does not have a minimum. Hence, applying gradient descent to the Lagrangian makes no sense. Treating $\nu$ as a hyperparameter and use gradient descent is likely wrong in most of the cases.
 
 Another, but still not proper, way to go about this is to use gradient descent on the euclidean norm of the derivative of the Lagrangian.
 
 $$
 \begin{equation}
 \begin{aligned}
-\nabla_x L(x, \lambda) &= (\nabla f(x) + A^{\top} \lambda), \\ 
-\nabla_{\lambda} L(x, \lambda) &= (Ax - b) \\
+\nabla_x L(x, \nu) &= (\nabla f(x) + A^{\top} \nu), \\ 
+\nabla_{\nu} L(x, \nu) &= (Ax - b) \\
 \end{aligned}
 \label{eq:derivatives_const}
 \end{equation}
@@ -445,9 +445,9 @@ Then,
 $$
 \begin{aligned}
 
-\frac{1}{2} \|F\|^2_2 &= \frac{1}{2} \Big( \|\nabla f(x) + \lambda^\top A \|_2^2 + \|Ax - b\|_2^2 \Big) \\
-&=  \frac{1}{2} \bigg( (\nabla f(x) + \lambda^{\top}A)^{\top} (\nabla f(x) + \lambda^{\top}A) + (Ax - b)^{\top}(Ax - b) \bigg) \\
-&=  \frac{1}{2} \bigg( \|\nabla f(x)\|^2_2 + 2\lambda^{\top} A \nabla f(x) + \lambda^{\top}AA^{\top}\lambda + x^{\top}A^{\top}Ax - 2x^{\top}A^{\top}b + \|b\|^2_2 \bigg).
+\frac{1}{2} \|F\|^2_2 &= \frac{1}{2} \Big( \|\nabla f(x) + \nu^\top A \|_2^2 + \|Ax - b\|_2^2 \Big) \\
+&=  \frac{1}{2} \bigg( (\nabla f(x) + \nu^{\top}A)^{\top} (\nabla f(x) + \nu^{\top}A) + (Ax - b)^{\top}(Ax - b) \bigg) \\
+&=  \frac{1}{2} \bigg( \|\nabla f(x)\|^2_2 + 2\nu^{\top} A \nabla f(x) + \nu^{\top}AA^{\top}\nu + x^{\top}A^{\top}Ax - 2x^{\top}A^{\top}b + \|b\|^2_2 \bigg).
 \end{aligned}
 
 $$
@@ -456,8 +456,8 @@ Taking derivatives (again):
 
 $$
 \begin{aligned}
- \nabla_x  \frac{1}{2}\|F\|^2_2 = \nabla^2 f(x) \big( \nabla f(x) + \lambda^{\top}A \big) + A^{\top}(Ax -b) \\
- \nabla_{\lambda}  \frac{1}{2}\|F\|^2_2 = A \nabla f(x) + AA^{\top}\lambda
+ \nabla_x  \frac{1}{2}\|F\|^2_2 = \nabla^2 f(x) \big( \nabla f(x) + \nu^{\top}A \big) + A^{\top}(Ax -b) \\
+ \nabla_{\nu}  \frac{1}{2}\|F\|^2_2 = A \nabla f(x) + AA^{\top}\nu
 \end{aligned}
 
 $$
@@ -492,14 +492,14 @@ $$
 A & 0
 \end{pmatrix}
 \begin{pmatrix}
-\Delta x_k \\ \Delta \lambda_k
+\Delta x_k \\ \Delta \nu_k
 \end{pmatrix}
 =
 -\begin{pmatrix}
-\nabla f(x_k) + A^\top \lambda_k \\ Ax_k - b
+\nabla f(x_k) + A^\top \nu_k \\ Ax_k - b
 \end{pmatrix} = 
 -\begin{pmatrix}
-\nabla f(x_k) + A^\top \lambda_k \\ 0
+\nabla f(x_k) + A^\top \nu_k \\ 0
 \end{pmatrix}
 $$
 
@@ -507,19 +507,19 @@ and the update is
 
 $$
 x_{k+1} = x_k - \Delta x_k, \quad
-\lambda_{k+1} = \lambda_k - \Delta \lambda_k.
+\nu_{k+1} = \nu_k - \Delta \nu_k.
 $$
 
 There is an important distinction in the actual algorithm if the start is or not feasible ($$Ax = b$$). If the start is not feasible we are essentially looking at a primal-dual optimization algorithm and we look at minimizing the residual vector. This has implications in the line search, convergence criteria and so on. The second equality in the Newton system would not be true in that case. However, it is often pretty simple to provide a feasible starting point. In that case, we can actually do some simple algebra 
 
 $$
 \begin{aligned}
-\nabla^2 f(x_k) \Delta x_k + A^\top \Delta \lambda_k &= - \nabla f(x_k) - A^\top \lambda_k \\
-\nabla^2 f(x_k) \Delta x_k &= - \nabla f(x_k) - A^\top (\lambda_k + \Delta \lambda_k)
+\nabla^2 f(x_k) \Delta x_k + A^\top \Delta \nu_k &= - \nabla f(x_k) - A^\top \nu_k \\
+\nabla^2 f(x_k) \Delta x_k &= - \nabla f(x_k) - A^\top (\nu_k + \Delta \nu_k)
 \end{aligned}
 $$
 
-so let $$\lambda = (\lambda_k + \Delta \lambda_k)$$ to reach the equivalent simpler system:
+so let $$\nu = (\nu_k + \Delta \nu_k)$$ to reach the equivalent simpler system:
 
 
 $$
@@ -528,14 +528,14 @@ $$
 A & 0
 \end{pmatrix}
 \begin{pmatrix}
-\Delta x_k \\ \lambda
+\Delta x_k \\ \nu
 \end{pmatrix} = 
 -\begin{pmatrix}
 \nabla f(x_k) \\ 0
 \end{pmatrix}.
 $$
 
-In the latter we actually do not care much about $$\lambda$$ until convergence. Since it does not play any role in determining the updates for $$x$$.
+In the latter we actually do not care much about $$\nu$$ until convergence. Since it does not play any role in determining the updates for $$x$$.
 
 In the above example, a very naive implementation of Newton's method takes only 0.068 seconds.
 
@@ -586,31 +586,31 @@ These notes are a personal synthesis and extensions based on lectures from **Mas
 
      Let the Hessian (<a href="https://en.wikipedia.org/wiki/Symmetry_of_second_derivatives">which is always symmetric</a>) at \(z\) have an eigendecomposition
     \[
-    \nabla^2 f(z) = Q \Lambda Q^{\top},
+    \nabla^2 f(z) = Q \nu Q^{\top},
     \]
     where \(Q\) is an <a href="https://en.wikipedia.org/wiki/Spectral_theorem">orthogonal matrix of eigenvectors</a>, and 
-    \(\Lambda = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)\) contains the real eigenvalues.
+    \(\nu = \mathrm{diag}(\nu_1, \ldots, \nu_n)\) contains the real eigenvalues.
 
       In this basis, write \(v = Q^{\top}(y-x)\).  
       Then the quadratic form becomes
       \[
       (y-x)^{\top}\nabla^2 f(z)(y-x) 
-      = v^{\top}\Lambda v 
-      = \sum_{i=1}^n \lambda_i v_i^2.
+      = v^{\top}\nu v 
+      = \sum_{i=1}^n \nu_i v_i^2.
       \]
 
       Since each \(v_i^2 \ge 0\), we have
       \[
-      \sum_{i=1}^n \lambda_i v_i^2 
-      \ge \lambda_{\min} \sum_{i=1}^n v_i^2 
-      = \lambda_{\min} \|v\|^2_2 
-      = \lambda_{\min} \|y-x\|^2_2.
+      \sum_{i=1}^n \nu_i v_i^2 
+      \ge \nu_{\min} \sum_{i=1}^n v_i^2 
+      = \nu_{\min} \|v\|^2_2 
+      = \nu_{\min} \|y-x\|^2_2.
       \]
 
       Therefore,
       \[
       \frac{1}{2}(y-x)^{\top}\nabla^2 f(z)(y-x)
-      \ge \frac{1}{2}\lambda_{\min}\,\|y-x\|^2_2.
+      \ge \frac{1}{2}\nu_{\min}\,\|y-x\|^2_2.
       \]
 </details>
 
@@ -618,35 +618,35 @@ These notes are a personal synthesis and extensions based on lectures from **Mas
       <summary><strong>3. Derivation using primal/dual arguments </strong></summary>
         This way is longer but for me seems more intuitive:
 
-        We derive the primal solution analytically, this is indeed a minimizer if $\lambda > 0$, since then, the Lagrangian is bounded below w.r.t $v$:
+        We derive the primal solution analytically, this is indeed a minimizer if $\nu > 0$, since then, the Lagrangian is bounded below w.r.t $v$:
 
         \[
-        L(v, \lambda) = \nabla f(x) + \lambda \bigg(v^\top P v - 1\bigg).
+        L(v, \nu) = \nabla f(x) + \nu \bigg(v^\top P v - 1\bigg).
         \]
 
         Differentiating and equating to 0 (very easy) we find that:
          \[
-        v = -P^{-1}\frac{\nabla f(x)}{2\lambda}.
+        v = -P^{-1}\frac{\nabla f(x)}{2\nu}.
         \]
 
         Good, now plugging this in we got rid of $v$ and we focus on maximizing the dual function:
         \[
         \begin{aligned}
-        g(\lambda) &= \min_v L(v, \lambda) \\
-        &= \nabla f(x)^\top \Big(-\frac{1}{2\lambda} P^{-1} \nabla f(x)\Big) 
-        + \lambda \Big( \big(-\frac{1}{2\lambda} P^{-1} \nabla f(x)\big)^\top P \big(-\frac{1}{2\lambda} P^{-1} \nabla f(x)\big) - 1 \Big) \\
-        &= -\frac{1}{4\lambda} \nabla f(x)^\top P^{-1} \nabla f(x) - \lambda
+        g(\nu) &= \min_v L(v, \nu) \\
+        &= \nabla f(x)^\top \Big(-\frac{1}{2\nu} P^{-1} \nabla f(x)\Big) 
+        + \nu \Big( \big(-\frac{1}{2\nu} P^{-1} \nabla f(x)\big)^\top P \big(-\frac{1}{2\nu} P^{-1} \nabla f(x)\big) - 1 \Big) \\
+        &= -\frac{1}{4\nu} \nabla f(x)^\top P^{-1} \nabla f(x) - \nu
         \end{aligned}
         \]
 
-        Maximizing over \(\lambda > 0\) gives
+        Maximizing over \(\nu > 0\) gives
         \[
-        \frac{d g}{d \lambda} = \frac{1}{4 \lambda^2} \nabla f(x)^\top P^{-1} \nabla f(x) - 1 = 0 
+        \frac{d g}{d \nu} = \frac{1}{4 \nu^2} \nabla f(x)^\top P^{-1} \nabla f(x) - 1 = 0 
         \quad \rightarrow \quad 
-        \lambda = \frac{1}{2} \sqrt{\nabla f(x)^\top P^{-1} \nabla f(x)}
+        \nu = \frac{1}{2} \sqrt{\nabla f(x)^\top P^{-1} \nabla f(x)}
         \]
 
-        Plugging \(\lambda\) back into \(v(\lambda)\) recovers the primal solution:
+        Plugging \(\nu\) back into \(v(\nu)\) recovers the primal solution:
         \[
         v = - \frac{P^{-1} \nabla f(x)}{\sqrt{\nabla f(x)^\top P^{-1} \nabla f(x)}} = \frac{P^{-1}\nabla f(x)}{\| P^{-0.5}\nabla f(x) \|_2}.
         \]
