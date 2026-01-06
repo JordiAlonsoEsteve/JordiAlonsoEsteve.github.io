@@ -1,7 +1,7 @@
 import numpy as np
 from test_utils import test_derivative
-from plotting_utils import create_svm_gif, plot_svm_evolution
-from data_utils import generate_test_data, generate_test_data_2d, construct_Q, construct_Q_rbf
+from plotting_utils import create_svm_gif_linear, create_svm_gif_kernelized
+from data_utils import generate_test_data, generate_test_data_2d, construct_Q, construct_Q_rbf, rbf_kernel_matrix
 
 ### Phase I machinery
 
@@ -246,8 +246,7 @@ def phase_II(x, y, C, alpha, nu,  t = 0.1, epsilon = 1e-5, Q_function = construc
                 break
         if 2*t < epsilon:
             break
-
-        t = t * 0.01
+        t = t * 0.3
     
     print(f"Phase II completed, t = {t}")            
     
@@ -301,7 +300,7 @@ def test_phaseI():
 
 def test_phaseII():
         n = 100
-        C = 10000
+        C = 0.5
         t = 1
         nu = 1.0
         s = 100.0 # In Phase I, s must be large enough so alpha is feasible (essentially larger than C)
@@ -310,8 +309,8 @@ def test_phaseII():
         Q, y, x = generate_test_data_2d(int(n/2))
         alpha, _, nu = phase_I(alpha, y, C, s=s, t=t , nu = nu)
         alpha, alphas_list, value_function, nu_list= phase_II(x=x, y=y, C= C, alpha= alpha, nu= nu, Q_function=construct_Q_rbf)
-        plot_svm_evolution(x, y, alphas_list, value_function, C = C, filename= "LB.gif")
-
+        create_svm_gif_kernelized(x, y, alphas_list, value_function, C = C, kernel = rbf_kernel_matrix, filename= "LB.gif")
+        print(alpha)
 if __name__ == "__main__":
    
     test_phaseII()

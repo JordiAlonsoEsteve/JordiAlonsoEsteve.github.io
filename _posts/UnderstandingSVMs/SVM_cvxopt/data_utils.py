@@ -47,9 +47,12 @@ def construct_Q(x, y):
     K = x @ x.T
     return np.outer(y, y) * K
 
-def rbf_kernel_matrix(X, gamma=1.0):
+def rbf_kernel_matrix(X, gamma=1.0, grid = None):
     """Computes the Gaussian RBF Kernel: K(x,y) = exp(-gamma * ||x-y||^2)"""
-    sq_dists = np.sum(X**2, axis=1).reshape(-1, 1) + np.sum(X**2, axis=1) - 2 * np.dot(X, X.T)
+    if grid is None:
+        sq_dists = np.sum(X**2, axis=1).reshape(-1, 1) + np.sum(X**2, axis=1) - 2 * np.dot(X, X.T)
+    else:
+        sq_dists= np.sum(grid**2, axis=1).reshape(-1, 1) + np.sum(X**2, axis=1) - 2 * np.dot(grid, X.T)
     return np.exp(-gamma * sq_dists)
 
 def construct_Q_rbf(X, y, gamma=1.0):

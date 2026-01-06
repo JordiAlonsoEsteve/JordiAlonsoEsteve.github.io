@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation, PillowWriter
 import numpy as np
 
-def create_svm_gif(x, y, alphas_list, value_history, C, filename="svm_evolution.gif"):
+def create_svm_gif_linear(x, y, alphas_list, value_history, C, filename="svm_evolution.gif"):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
     
     # Pre-calculate axis limits
@@ -53,7 +53,7 @@ def create_svm_gif(x, y, alphas_list, value_history, C, filename="svm_evolution.
     plt.close()
     print(f"GIF saved as {filename}")
 
-def plot_svm_evolution(X, y, alphas_list, value_history, C,  filename, gamma=1.0,):
+def create_svm_gif_kernelized(X, y, alphas_list, value_history, C, kernel, filename, gamma=1.0,):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 7))
     
     # Define grid for evaluation
@@ -63,9 +63,7 @@ def plot_svm_evolution(X, y, alphas_list, value_history, C,  filename, gamma=1.0
     grid = np.c_[xx.ravel(), yy.ravel()]
     
     # Pre-compute Grid Kernel for speed
-    sq_grid = np.sum(grid**2, axis=1).reshape(-1, 1) + np.sum(X**2, axis=1) - 2 * np.dot(grid, X.T)
-    K_grid = np.exp(-gamma * sq_grid)
-
+    K_grid = kernel(X, grid = grid)
     def update(frame):
         ax1.clear()
         ax2.clear()
@@ -76,9 +74,8 @@ def plot_svm_evolution(X, y, alphas_list, value_history, C,  filename, gamma=1.0
         # Calculate b (Bias) using Support Vectors
         sv_mask = (alpha > 1e-4) & (alpha < C - 1e-4)
         if np.any(sv_mask):
-            K_sv = np.exp(-gamma * (np.sum(X[sv_mask]**2, axis=1).reshape(-1, 1) + 
-                                np.sum(X**2, axis=1) - 2 * np.dot(X[sv_mask], X.T)))
-            b = np.mean(y[sv_mask] - np.dot(K_sv, y_alpha))
+            K_sv = kernel(X)
+            b = np.mean(y - np.dot(K_sv, y_alpha))
         else:
             b = 0
 

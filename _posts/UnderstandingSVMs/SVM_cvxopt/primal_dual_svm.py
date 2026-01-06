@@ -1,6 +1,6 @@
 import numpy as np
-from data_utils import generate_test_data, generate_test_data_2d, construct_Q, construct_Q_rbf
-from plotting_utils import create_svm_gif, plot_svm_evolution
+from data_utils import generate_test_data, generate_test_data_2d, construct_Q, construct_Q_rbf, rbf_kernel_matrix
+from plotting_utils import create_svm_gif_linear, create_svm_gif_kernelized
 from tqdm import tqdm
 
 def f_0(alpha, Q, lambd, nu, C, y, t):
@@ -24,6 +24,7 @@ def g_r_dual_alpha(alpha, Q, lambd, nu, C, y, t):
     return -Q
 
 def g_r_dual_lambd(alpha, Q, lambd, nu, C, y, t):
+    n = y.size
     pn_one_diag = np.concatenate([-np.eye(n), np.eye(n)])
     return  - pn_one_diag.T
 
@@ -34,6 +35,7 @@ def g_r_dual_nu(alpha, Q, lambd, nu, C, y, t):
 # second row
 
 def g_r_cent_alpha(alpha, Q, lambd, nu, C, y, t):
+    n = y.size
     pn_one_diag = np.concatenate([-np.eye(n), np.eye(n)])
     return - np.diag(lambd) @ pn_one_diag
 
@@ -115,7 +117,7 @@ def line_search(alpha, Q, lambd, nu, C, y, t, delta_alpha, delta_lambd, delta_nu
     return s
 
 
-def primal_dual_SVM(x, y, C, mu = 0.1, t = 1, Q_function = construct_Q, epsilon = 1e-8):
+def primal_dual_SVM(x, y, C, mu = 0.1, t = 1, Q_function = construct_Q, epsilon = 1e-5):
     Q = Q_function(x, y)
     n = y.size
     m = 2*n
@@ -204,11 +206,11 @@ if __name__ == "__main__":
     
 
     n = 100
-    C = 100
+    C = 1
     t = 1
     nu = 1.0
     #Q, y, x = generate_test_data(n, p = 2)
     Q, y, x = generate_test_data_2d(int(n/2))
     
     alpha, lambd, nu, alphas_list, value_function, nu_list = primal_dual_SVM(x, y, C, Q_function= construct_Q_rbf)
-    plot_svm_evolution(x, y, alphas_list, value_function, C = C, filename= "PD.gif")
+    create_svm_gif_kernelized(x, y, alphas_list, value_function, C = C, kernel = rbf_kernel_matrix, filename= "PD.gif")
