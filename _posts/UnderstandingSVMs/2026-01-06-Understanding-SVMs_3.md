@@ -620,7 +620,7 @@ $$
 u_i = \sum_{k=1}^N \alpha_k y_k K_{ki} + b,
 $$
 
-this is, the prediction for the value $$x_i$$ in the hyperplane (note $$ w = \sum_{k=1}^N \alpha_k y_k \phi(x_k) $$). Now, let $$E_k = u_k - y_k$$ be the error of the prediction. Substituting $\zeta$ back:
+this is, the prediction for the value $$x_i$$ in the hyperplane (note $$ w = \sum_{k=1}^N \alpha_k y_k \phi(x_k) $$). Now, let $$E_k = u_k - y_k$$ be the error of the prediction. Substituting $$\zeta$$ back:
 
 $$
 \begin{aligned}
