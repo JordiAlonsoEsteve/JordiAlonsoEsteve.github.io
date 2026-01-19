@@ -96,7 +96,7 @@ $$
 
 $$
 
-Clearly, for each value of $t$ we have a different solution for this problem; we call them $$\alpha^*(t)$$. Now, one could choose a very small $t$ and just fit Newton's method for equality constraints. However, this is unlikely to work well, because the Hessian is likely to vary very rapidly when the parameters of the inequality constraints are close to 0 (as per the Hessian definition above). In that case, the Lipschitz constant of the Hessian is huge, and we may need many iterations (to find a region where the gradient is already tiny) to reach the quadratically convergent phase of Newton's method. Hence, the idea is to decrease $t$ "slowly" and initialize the Newton's method in the previous solution, effectively having an outer loop decreasing $t$ and an inner loop solving the respective equality constrained problems starting at the solution of the previous iteration.
+Clearly, for each value of $$t$$  we have a different solution for this problem; we call them $$\alpha^*(t)$$. Now, one could choose a very small $$t$$  and just fit Newton's method for equality constraints. However, this is unlikely to work well, because the Hessian is likely to vary very rapidly when the parameters of the inequality constraints are close to 0 (as per the Hessian definition above). In that case, the Lipschitz constant of the Hessian is huge, and we may need many iterations (to find a region where the gradient is already tiny) to reach the quadratically convergent phase of Newton's method. Hence, the idea is to decrease $$t$$  "slowly" and initialize the Newton's method in the previous solution, effectively having an outer loop decreasing $$t$$  and an inner loop solving the respective equality constrained problems starting at the solution of the previous iteration.
 
 In any case, it is not completely obvious that this should yield the actual optimal for the original inequality constrained problem. Nevertheless, this is actually the case. In particular, for the general minimization case (assuming $f_0$ convex and differentiable, affine equality constraints ($h_i$) and convex inequality constraints ($f_i$)):
 
@@ -104,7 +104,7 @@ $$
 \lim_{t \rightarrow 0} f_0(x^*(t)) = f_0(x^*).
 $$
 
-When $t$ is very small, then the objective value associated to the optimal parameters of the centralizer problem does indeed converge to the objective value of the optimal parameters in the original problem. To see this, note the following parallelism between the stationarity condition of the Lagrangian of the centralizer problem and the stationary condition of the original problem. For the centralizer problem:
+When $$t$$  is very small, then the objective value associated to the optimal parameters of the centralizer problem does indeed converge to the objective value of the optimal parameters in the original problem. To see this, note the following parallelism between the stationarity condition of the Lagrangian of the centralizer problem and the stationary condition of the original problem. For the centralizer problem:
 
 $$
 \nabla f_0(x^*(t)) + t \nabla \phi (x^*(t)) + A^{\top}\nu^*(t) = 0,
@@ -133,7 +133,7 @@ f_0(x^*) \geq g(\lambda^*(t), \nu^*(t))
 = f_0(x^*(t)) - mt.
 $$
 
-Hence, $$x^*(t)$$ is only $$mt$$ suboptimal so indeed the intuition is correct and we will recover the optimal solution. Note that, without strict convexity, $x^*$ might not be unique!
+Hence, $$x^*(t)$$ is only $$mt$$ suboptimal so indeed the intuition is correct and we will recover the optimal solution. Note that, without strict convexity, $$x^*$$ might not be unique!
 
 Finally, note that we do require always work with a feasible $x$. This is again not trivial; in fact, it requires an optimization step in itself (solving $$Ax = b$$ for $$x \leq 0$$ is as hard as an LP!). This boils down to solving:
 
