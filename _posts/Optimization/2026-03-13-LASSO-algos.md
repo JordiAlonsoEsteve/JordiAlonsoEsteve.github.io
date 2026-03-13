@@ -6,7 +6,7 @@ tag: [Optimization, ML]
 
 <link href="/css/syntax.css" rel="stylesheet">
 
-We will cover, superficially, the main optimization approaches for a l1 penalized regression. Jupyter notebook with the implementation can be found [here](/_posts/Optimization/2026-03-13-LASSO-algos.md).
+We will cover, superficially, the main optimization approaches for a l1 penalized regression. Jupyter notebook with the implementation can be found [here](/_posts/Optimization/Code/lasso_algos.ipynb).
 
 ## The Least Absolute Shrinkage and Selection Operator (LASSO) problem
 
@@ -25,7 +25,7 @@ This is probably one of the easiest interesting problems, stemming from the fact
 
 $$\lim_{h \to 0^+} \frac{|0 + h| - |0|}{h} \neq  \lim_{h \to 0^-} \frac{|0 + h| - |0|}{h}.$$
 
-## Subgradient descent
+## Subgradient method
 A workaround (which easily holds for convex functions) is the subgradient:
 
 A vector $g \in \mathbb{R}^n$ is a subgradient of $f:\mathbb{R}^n \rightarrow \mathbb{R}$ at $x \in \text{dom}\, f$ if 

@@ -732,7 +732,7 @@ This takes a bit more to train so the weights are available [here](/assets/weigh
 
 The training loop:
 ```python
-# Now training loop
+# Now training loop 
 optimizer = keras.optimizers.Adam(learning_rate= 1e-3)
 
 loss_l = []
