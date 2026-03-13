@@ -6,7 +6,7 @@ tag: [Optimization, ML]
 
 <link href="/css/syntax.css" rel="stylesheet">
 
-We will cover, superficially, the main optimization approaches for a l1 penalized regression. Jupyter notebook with the implementation can be found [here](/assets/images/LASSO/lasso_algos.ipynb).
+We will cover, superficially, the main optimization approaches for a l1 penalized regression. Jupyter notebook with the implementation can be found [here](/_posts/Optimization/2026-03-13-LASSO-algos.md).
 
 ## The Least Absolute Shrinkage and Selection Operator (LASSO) problem
 
