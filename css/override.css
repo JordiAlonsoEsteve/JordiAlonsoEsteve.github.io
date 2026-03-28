@@ -1,16 +1,24 @@
-/* === Dark Academia Theme Overrides === */
+/* === Jordi's ML Blog: Compact & Modern === */
 
-/* Import elegant fonts */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Crimson+Pro:wght@400;500;700&display=swap');
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Crimson+Pro:wght@400;500;700&family=Fira+Code&display=swap');
 
 /* --- General layout --- */
 body {
   font-family: 'Crimson Pro', serif;
   background-color: #0e0e0c;
   color: #e6dfcf;
-  line-height: 1.75;
-  font-size: 17px;
-  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.7;
+  font-size: 16px; /* Slightly smaller for a cleaner look */
+  margin: 0;
+}
+
+/* --- Centered Container (Prevents lines from extending to the end) --- */
+.wrapper, main.content {
+  max-width: 800px !important;   /* Restricted width for better readability */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 40px;               /* Side gutters */
 }
 
 /* --- Headings --- */
@@ -18,125 +26,89 @@ h1, h2, h3, h4 {
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   color: #f0e8d2;
-  letter-spacing: 0.01em;
-  margin-top: 1.6em;
+  letter-spacing: -0.01em;
 }
 
-/* --- Links --- */
+h1 { font-size: 2rem; margin-top: 2rem; }
+h2 { font-size: 1.6rem; margin-top: 1.8rem; color: #d2c4a1; }
+h3 { font-size: 1.2rem; margin-top: 1.5rem; }
+
+/* --- Vibrant Links --- */
 a {
-  color: #c5a96d;
+  color: #0070f3; /* Bright Action Blue */
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.15s ease;
 }
+
 a:hover {
-  color: #ec9d09;
+  color: #ff0080; /* Bright Pink Hover */
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
+/* --- Compact Post List --- */
+.post-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.post-date {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: #666;
+  min-width: 90px;
+  display: inline-block;
+}
+
+/* --- Refined Code Blocks --- */
 code {
-  background-color: #0b0b0b  !important;      /* very dark background */
-  color: #00ff41;                 /* bright neon green text */
+  background-color: #1a1a18 !important;
+  color: #c5a96d; /* Warm gold for code */
   border-radius: 4px;
   padding: 0.2em 0.4em;
   font-family: 'Fira Code', monospace;
-
-  border: none !important;
-  box-shadow: none !important;
+  font-size: 0.85em;
 }
 
-/* --- Fenced / block code --- */
-pre.syntax {
-  background-color: #0b0b0b !important;   /* very dark background */
-  color: #00ff41;                          /* bright neon green text */
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
+pre.syntax, div.highlight {
+  background-color: #161614 !important;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #252522 !important;
   overflow-x: auto;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.95em;
-  line-height: 1.4;
-  text-indent: 0;
-
-  border: 5px solid #555 !important;      /* thin border on outer box only */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); /* subtle dark shadow */
-}
-
-/* Inner <code> just inherits color */
-pre.syntax code {
-  color: #00ff41;                          /* neon green text */
-  background: none !important;             /* remove any inner background */
-  border: none !important;                 /* remove any inner border */
-  padding: 0;                              /* let <pre> handle padding */
-}
-
-/* --- Header + footer --- */
-.site-title {
-  font-family: 'DM Sans', sans-serif;
-  color: #d2c4a1;
-}
-.site-header {
-  border-bottom: 1px solid #1d1d1b;
-  padding-bottom: 0.8em;
-}
-.site-footer {
-  border-top: 1px solid #1d1d1b;
-  font-size: 0.9em;
-  color: #8c7851;
+  max-width: 100%; /* Ensures code doesn't break the container */
 }
 
 /* --- Blockquotes --- */
 blockquote {
-  border-left: 3px solid #8c7851;
-  padding-left: 1em;
+  border-left: 2px solid #0070f3; /* Use the accent blue for the quote bar */
+  padding-left: 1.2rem;
+  margin: 1.5rem 0;
   color: #cfc7b0;
   font-style: italic;
 }
-/* Override Rouge wrappers and outer divs */
-div.highlight,
-div.language-python.highlighter-rouge {
-  background-color: #0b0b0b !important;   /* dark Matrix background */
-  border: none !important;
-  box-shadow: none !important;
-}
-/* Widen the main blog container */
-.wrapper, main.content {
-  max-width: 900px !important;   /* increase from default 700-750px */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-/* Change the site title color */
+
+/* --- Header Styling --- */
 .site-title {
-  color: #837769 !important;      /* warm gold, Dark Academia style */
-  font-family: 'DM Sans', sans-serif;  /* optional, if you want to keep your heading font */
-  font-weight: 600;        /* optional boldness */
+  color: #837769 !important;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-/* Optional: change color on hover */
-.site-title:hover {
-  color: #f0b56d !important;        /* soft amber on hover */
-  text-decoration: none;   /* remove underline if any */
-}
-/* Ensure proper heading hierarchy */
-h1 {
-  font-size: 2.4rem;   /* biggest */
-  font-weight: 700;
-  margin-top: 2rem;
+.site-header {
+  border-bottom: 1px solid #1d1d1b;
+  margin-bottom: 3rem;
 }
 
-h2 {
-  font-size: 1.9rem;   /* slightly smaller */
-  font-weight: 600;
-  margin-top: 1.6rem;
-}
-
-h3 {
-  font-size: 1.5rem;   /* smaller still */
-  font-weight: 500;
-  margin-top: 1.2rem;
-}
-
-h4 {
-  font-size: 1.25rem;
-  font-weight: 500;
+/* --- Fix for the wide bottom line --- */
+.site-footer, 
+footer,
+.site-footer .wrapper {
+  max-width: 800px !important; /* Matches your main content width */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 2rem 40px;          /* Adds some breathing room at the bottom */
+  border-top: 1px solid #1d1d1b; /* The line itself */
 }
