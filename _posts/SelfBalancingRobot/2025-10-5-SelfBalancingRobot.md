@@ -47,7 +47,7 @@ As you might have guessed the objective is to keep this upright!
 </p>
 
 
-## Sensor data handling.
+## Sensor data handling
 Sensor data from the accelerometer is easily transformed into an angle; the gravity force split between the z and y (or x) axis gives us $\cos(\theta)$ and $\sin(\theta)$ respectively. However, this is quite noisy. To have a reliable estimation of the state, I used a Kalman Filter (KF). I must mention, however, that the much simpler complementary filter works also well. A KF provides the optimum state estimation with a weighted sum of the data coming from the sensor and the "predicted" state based on our model. If you have seen a bit of Bayesian Statistics, this is nothing else than conjugate updating Gaussian-Gaussian and a recursive relationship (+ linear algebra). The fundamental idea is that, at each point, a model proposes a prior of the current state based on the previous state. With that prior, and the likelihood constructed with the current sensor measurement, a new Gaussian is constructed. The mode of that Gaussian is the current estimation of the state. I am not going to get into the details of this here (the linear algebra part is actually tricky). The key idea is that the KF smooths the sensor data using information of what is physically plausible.
 
 We do not have the equations of motion. That would be the gold standard to construct the KF. However, we can still use basic physics to construct a simple model for the KF. In this case, I use a model that simply says: current angle is the sum of the angular velocity, but mind the drift:
@@ -83,7 +83,7 @@ So, that's the idea. We've got our state, we've got a way of keeping the state a
   Your browser does not support the video tag.
 </video>
 
-It can balance for a long time, although it some situations it still crashes. It is still work in progress, I will revisit this at some point.
+It can balance for a long time, although in some situations it still crashes. It is still work in progress, I will revisit this at some point.
 
 ## Code
 For details, check out the code [HERE](https://github.com/JordiAlonsoEsteve/SelfBalancingSegway/tree/main)
